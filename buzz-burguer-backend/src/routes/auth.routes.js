@@ -30,31 +30,40 @@ app.post('/register', [
 	check('name')
 		.not()
 		.isEmpty()
-		.withMessage('Name is required')
+		.withMessage('El nombre es requerido')
 		.trim()
 		.escape(),
 
 	check('email')
 		.isEmail()
-		.withMessage('Valid email required')
+		.withMessage('Email válido requerido')
 		.normalizeEmail(),
 
 	check('password')
 		.isLength({ min: PASSWORD_MIN_LENGTH })
-		.withMessage(`Password must be at least ${PASSWORD_MIN_LENGTH} characters`)
-		.withMessage('Password must contain uppercase, lowercase, and number')
+		.withMessage(`El password debe de contener al menos ${PASSWORD_MIN_LENGTH} caracteres`)
+		.withMessage('El password debe de contener mayúsculas, minúsculas, y números')
 ], authController.register);
 
+/**
+ * @route POST /api/login
+ * @description Authenticate existing user
+ * @param {string} email - Registered email
+ * @param {string} password - Account password
+ * @returns {object} User data with auth token
+ * @error 400 - Validation errors
+ * @error 401 - Invalid credentials
+ */
 app.post('/login', [
 	check('email')
 		.isEmail()
-		.withMessage('Valid email required')
+		.withMessage('Email válido requerido')
 		.normalizeEmail(),
 
 	check('password')
     	.not()
 		.isEmpty()
-		.withMessage('Password required')
+		.withMessage('Password requerido')
 ], authController.login);
 
 module.exports = app;
