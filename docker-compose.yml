@@ -1,0 +1,45 @@
+# Docker Compose configuration for Buzz Burguer production environment
+# Version: 3.8 (minimum required for advanced features)
+version: '3.8'
+
+services:
+  # Backend Service - API REST Node.js
+  backend:
+    build: ./buzz-burguer-backend  # Dockerfile location for backend
+    ports:
+      - "9040:9040"  # Expose backend API port (host:container)
+    environment:
+      - NODE_ENV=production  # Runtime environment
+      - PORT=${BACKEND_PORT}  # Server port from .env
+      - JWT_SECRET=${JWT_SECRET}  # Secret for JWT token generation
+      - messageTerminal=${TERMINAL_MESSAGE}  # Custom terminal message
+      - MONGO_DB_URI=${MONGO_DB_URI}  # MongoDB connection string
+    # Uncomment for local MongoDB dependency
+    # depends_on:
+    #   - mongo
+
+  # Frontend Service - Vue.js Application
+  frontend:
+    build:
+      context: ./buzz-burguer-frontend  # Docker build context
+      args:
+        - VUE_APP_API_URL=${VUE_APP_API_URL}  # API endpoint configuration
+    ports:
+      - "80:80"  # Web server standard HTTP port
+    depends_on:
+      - backend  # Ensure backend starts first
+
+  # MongoDB Service (Optional - Production recommendation: Use managed DB)
+  mongo:
+    image: mongo:6.0  # Official MongoDB image with version pinning
+    volumes:
+      - mongo_data:/data/db  # Persistent volume for data storage
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}  # Admin username
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}  # Admin password
+    ports:
+      - "27017:27017"  # Expose MongoDB port for external access
+
+# Persistent Volume Declaration
+volumes:
+  mongo_data:  # Named volume for MongoDB data persistence
