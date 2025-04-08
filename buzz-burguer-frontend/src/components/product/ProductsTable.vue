@@ -3,7 +3,6 @@
     <div v-if="products.length === 0" class="empty-state">
       🍔 No hay productos disponibles
     </div>
-    
     <div v-else class="table-container">
       <table class="product-table">
         <thead>
