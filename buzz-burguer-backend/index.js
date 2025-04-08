@@ -47,11 +47,11 @@ const corsOptions = {
 
 // Optimized rate limiting configuration
 const limiter = rateLimit({
-	windowMs: 15 * 60 * 1000, // 15 minutos
+	windowMs: 15 * 60 * 1000, // 15 minutes
 	max: process.env.RATE_LIMIT_MAX || 100,
 	message: {
 		status: 429,
-		message: 'Demasiadas solicitudes desde esta IP, intente nuevamente más tarde'
+		message: 'Too many requests, please try again later.'
 	},
 	standardHeaders: true,
 	legacyHeaders: false
@@ -60,7 +60,7 @@ const limiter = rateLimit({
 // Optimized middleware stack
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
-app.use(cors(corsOptions)); // Un solo CORS con opciones
+app.use(cors(corsOptions)); // CORS configuration
 app.use(helmet());
 app.use(limiter);
 app.use(mongoSanitize());
