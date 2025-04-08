@@ -1,8 +1,6 @@
 # Buzz Burger Management System
 
-![Buzz Burger Logo](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDeOKZARPDYtQKvi1FTS5E2juGqIuubkGI0CwKhx2ZJSbsY448)
-
-Modern restaurant management system with digital menu and admin capabilities.
+Full-stack restaurant solution featuring digital menus and admin dashboard. Combines Vue.js frontend with Node.js/MongoDB backend, supporting Dockerized deployment for modern infrastructure needs.
 
 ## Features
 
