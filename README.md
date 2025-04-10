@@ -27,6 +27,25 @@ Ensure you have the following installed:
 - Node.js & npm
 - Vue CLI (optional for manual setup)
 
+#### Set up environment variables:
+
+Create a `.env` file in both the server and client directories and add the required environment variables.
+
+##### Backend (buzz-burguer-backend) `.env` file:
+
+```bash
+PORT=9040
+JWT_SECRET (your JWT secret)
+MESSAGE_TERMINAL (your message terminal)
+MONGO_DB_URI (your MongoDB URI)
+```
+
+##### Frontend (buzz-burguer-frontend) `.env` file:
+
+```bash
+VUE_APP_API_URL=http://localhost:9040/api
+```
+
 ## Installation
 
 ### Running the Application with CLI
@@ -35,23 +54,27 @@ Ensure you have the following installed:
 
 	```bash
 	git clone https://github.com/Frnn4268/buzz-burger.git
-	 # Backend
-	cd buzz-burguer-backend
-	 # Frontend
-	cd buzz-burguer-frontend
+ 
+	cd buzz-burguer
 	```
 
 2. Install dependencies: 
 	```bash
+	# Backend
+	cd buzz-burguer-backend
+	npm install
+ 
+	# Frontend
+	cd ../buzz-burguer-frontend
 	npm install
 	```
 
-3. Start the backend: 
+3. Start the backend (server): 
 	```bash
 	npm run dev
 	```
 
-4. Start the client side: 
+4. Start the frontend (client): 
 	```bash
 	npm run serve
 	```
@@ -67,6 +90,8 @@ Ensure you have the following installed:
 
 	```bash
 	git clone https://github.com/Frnn4268/buzz-burger.git
+ 
+ 	cd buzz-burguer
 	```
 
 2. Start the application:
