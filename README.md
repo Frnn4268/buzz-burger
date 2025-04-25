@@ -10,13 +10,13 @@ Full-stack restaurant solution featuring digital menus and admin dashboard. Comb
 - 📊 Real-time status toggles and filters
 - 🐳 Dockerized deployment
 
-## Static Service
+## Services
 
 This project consists of the following services:
 
 | Service  | Description  | Port  |
 | ------------ | ------------ | ------------ |
-| Vue Client | The application interacts with an API gateway to handle all backend operations. | 8080  |
+| Vue Client | The application interacts with an API gateway to handle all backend operations. | 8080 or 80 (if you use the compose file)  |
 | Node/Express Server | The server responds to client-side requests | 9040  |
 
 ## Prerequisites
@@ -138,7 +138,8 @@ GET /api/product?priceFrom=300&priceTo=500&orderBy=price&orderDirection=desc
 ```
 
 ## Access URLs
-- Frontend: http://localhost:8080
+- Frontend: http://localhost:8080 
+- Frontend: http://localhost:80 (if you use the compose file)
 - Backend: http://localhost:9040
 
 ## Contributors
